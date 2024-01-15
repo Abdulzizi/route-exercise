@@ -16,14 +16,6 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 /*
-app.get('/moklet', (req: Request, res: Response) => {
-    let nama: any = req.query.nama?.toString();
-    let umur: any = req.query.umur?.toString();
-
-    let message: string = `Nama gweh is ${nama} and my umur is ${umur} years old`;
-
-    res.status(200).json(message);  
-});
 
 app.get('/telkom/:nama/:gender', (req: Request, res: Response) => {
     let nama: string = req.params.nama;
