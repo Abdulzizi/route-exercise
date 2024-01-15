@@ -136,7 +136,9 @@ export const volumeBola = (req: Request, res: Response)  => {
     try {
         const phi = Math.PI;
 
-        const calculate = Math.floor((4/3) * (phi*phi*phi));
+        const r = Number(req.body.r);
+
+        const calculate = Math.floor((4/3) * (phi*phi*phi) * r * 2);
 
         res.status(200).json({
             status: true,

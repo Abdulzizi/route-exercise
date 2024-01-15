@@ -1,5 +1,4 @@
 import express, {Request, Response} from 'express';
-import { validateCube } from './middleware/validateCube';
 import routeBangunDatar from './routes/bangunDatar';
 import routeBangunRuang from './routes/bangunRuang';
 

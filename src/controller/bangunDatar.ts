@@ -45,7 +45,7 @@ export const kelilingLingkaran  = (req: Request, res: Response) => {
 export const luasPersegi = (req: Request,res: Response) => {
     try {
         const s:  number = Number(req.body.s)
-        const luas = s * s
+        const luas = s * s;
         return res.status(200).json({
             status: true,
             s,
@@ -63,7 +63,7 @@ export const luasPersegi = (req: Request,res: Response) => {
 export const kelilingPersegi = (req: Request,res: Response) => {
     try {
         const s:  number = Number(req.body.s)
-        const keliling = s * 4
+        const keliling = s * 4;
         return res.status(200).json({
             status: true,
             s,
