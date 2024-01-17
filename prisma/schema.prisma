@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root@localhost:3306/db-concert"
+  // root -> username db
+  // localhost -> nama server
+  // concert -> nama db
+}
+
+model events {
+  eventID   Int       @id @default(autoincrement())
+  eventName String    @default("")
+  eventDate DateTime  @default(now())
+  venue     String    @default("")
+  price     Int       @default(0)
+  createdAt DateTime  @default(now())
+  updateAt  DateTime  @updatedAt
+  seats     seats[]
+  tickets   tickets[]
+}
+
+model seats {
+  seatID       Int       @id @default(autoincrement())
+  eventID      Int       @default(0)
+  rowNum       String    @default("")
+  seatNum      Int       @default(0)
+  status       Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updateAt     DateTime  @updatedAt
+  eventDetails events    @relation(fields: [eventID], references: [eventID])
+  tickets      tickets[]
+}
+
+model users {
+  userID    Int       @id @default(autoincrement())
+  firstName String    @default("")
+  lastName  String    @default("")
+  email     String    @default("")
+  password  String    @default("")
+  role      Role      @default(USER)
+  createdAt DateTime  @default(now())
+  updateAt  DateTime  @updatedAt
+  tickets   tickets[]
+}
+
+model tickets {
+  ticketID     Int      @id @default(autoincrement())
+  eventID      Int      @default(0)
+  userID       Int      @default(0)
+  seatID       Int      @default(0)
+  bookedDate   DateTime
+  createdAt    DateTime @default(now())
+  updateAt     DateTime @updatedAt
+  eventDetails events   @relation(fields: [eventID], references: [eventID])
+  userDetails  users    @relation(fields: [userID], references: [userID])
+  seatDetails  seats    @relation(fields: [seatID], references: [seatID])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
